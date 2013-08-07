@@ -1,0 +1,11 @@
+{
+    "name": "example",
+    "version": "1.0.0",
+    "dependencies": {
+        "angular": "1.2.0-rc.2",
+        "angular-resource": "1.2.0-rc.2",
+        "underscore": "",
+        "bootstrap": ">=3.0"
+    },
+    "private": true
+}

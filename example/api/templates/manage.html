@@ -1,0 +1,22 @@
+{% extends 'editor.html' %}
+
+{% block ng_app %}example.app.manage{% endblock %}
+
+{% block post_header %}
+<button type="button" class="close" ng-controller="DeleteController" ng-click="delete(post)" ng-show="canDelete(post)">&times;</button>
+{{ block.super }}
+{% endblock %}
+
+{% block js %}
+{{ block.super }}
+<script>
+// Configure the current user
+var app = angular.module('example.app.manage'); // Not including a list of dependent modules (2nd parameter to `module`) "re-opens" the module for 
+
+app.factory('AuthUser', function() {
+    return {
+        username: "{{ user.username|default:''|escapejs }}"
+    }
+});
+</script>
+{% endblock %}

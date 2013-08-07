@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block ng_app %}example.app.editor{% endblock %}
+
+{% block content %}
+{% verbatim %}
+<div ng-controller="EditController">
+    <h5>Create a New Post</h5>
+    <form class="form-inline">
+        <div class="form-group block-level">
+            <input type="text" class="form-control" ng-model="newPost.title" placeholder="Title">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" ng-model="newPost.body" placeholder="Body">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-default" ng-click="save()">Add Post</button>
+        </div>
+        <p ng-repeat="(name, errs) in errors" class="alert alert-danger"><strong>{{ name }}</strong>: {{ errs.join(', ') }}</p>
+    </form>
+</div>
+{% endverbatim %}
+{{ block.super }}
+{% endblock %}
+
+{% block js %}
+{{ block.super }}
+<script>
+// Add the CSRF Token
+var app = angular.module('example.app.editor'); // Not including a list of dependent modules (2nd parameter to `module`) "re-opens" the module for additional configuration
+app.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.defaults.headers.common['X-CSRFToken'] = '{{ csrf_token|escapejs }}';
+}]);
+</script>
+{% endblock %}

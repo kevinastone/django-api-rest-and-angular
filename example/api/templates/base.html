@@ -1,0 +1,44 @@
+{% load staticfiles %}
+
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{% static "bootstrap/dist/css/bootstrap.css" %}">
+<style>
+    .photo img {
+        
+        max-width: 150px;
+        vertical-align: top;
+    }
+    
+    .close {
+        
+        padding: 0 10px;
+    }
+</style>
+</head>
+<body ng-app="{% block ng_app %}example.app.static{% endblock %}">
+<div class="container">
+<div class="content ng-cloak" ng-controller="{% block ng_controller %}AppController{% endblock %}">{% block content %}
+    <div class="panel" ng-repeat="post in posts">
+        <div class="panel-heading clearfix">{% block post_header %}
+            {% verbatim %}
+            <h3 class="panel-title">{{ post.title }} <small>{{ post.author.username }}</small></h3>
+            {% endverbatim %}
+        {% endblock %}</div>
+        {% verbatim %}
+        <p class="well">{{ post.body }}</p>
+        <span class="photo" ng-repeat="photo in photos[post.id]">
+            <img class="img-thumbnail" ng-src="{{ photo.image }}">
+        </span>
+        {% endverbatim %}
+    </div>
+{% endblock %}</div>
+</div>
+{% block js %}
+<script src="{% static "underscore/underscore.js" %}"></script>
+<script src="{% static "angular/angular.js" %}"></script>
+<script src="{% static "angular-resource/angular-resource.js" %}"></script>
+<script src="{% static "js/script.js" %}"></script>
+{% endblock %}
+</body>
+</html>

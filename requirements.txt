@@ -1,0 +1,8 @@
+Django>=1.5
+djangorestframework
+south>=0.8,<2.0
+pillow
+
+# Optional
+Werkzeug
+django-extensions

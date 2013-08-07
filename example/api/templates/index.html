@@ -1,0 +1,13 @@
+{% load staticfiles %}
+
+<html>
+<body ng-app="example.app.resource">
+<ol>
+    <li><a href="{% url "example" template_name='static' %}">Hard Coded Example</li>
+    <li><a href="{% url "example" template_name='basic' %}">Basic Ajax Example</li>
+    <li><a href="{% url "example" template_name='resource' %}">Angular Resource Example</li>
+    <li><a href="{% url "example" template_name='photos' %}">Photos Example</li>
+    <li><a href="{% url "example" template_name='editor' %}">Editor Example</li>
+</ol>
+</body>
+</html>
