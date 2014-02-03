@@ -15,20 +15,24 @@ You're encouraged to setup a `virtualenv` to work in prior to configuring the de
         pip install -r requirements.txt
         python setup.py develop
 
-2. Install Assets
+2. Install Bower + Grunt
+
+		npm install -g grunt-cli bower
+
+3. Install Assets
 
         npm install
         bower install
 
-3. Compile Assets
+4. Compile Assets
 
         grunt
 
-4. Setup the Database
+5. Setup the Database
 
         make create_database; make make_fixtures
 
-5. Run the Server
+6. Run the Server
 
         ./manage.py runserver
 
