@@ -2,8 +2,8 @@
     "name": "example",
     "version": "1.0.0",
     "dependencies": {
-        "angular": "1.2.0-rc.2",
-        "angular-resource": "1.2.0-rc.2",
+        "angular": "1.2.13",
+        "angular-resource": "1.2.13",
         "underscore": "",
         "bootstrap": ">=3.0"
     },
