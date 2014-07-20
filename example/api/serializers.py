@@ -16,9 +16,9 @@ class PostSerializer(serializers.ModelSerializer):
     photos = serializers.HyperlinkedIdentityField('photos', view_name='postphoto-list')
     # author = serializers.HyperlinkedRelatedField(view_name='user-detail', lookup_field='username')
     
-    def get_validation_exclusions(self, instance=None):
+    def get_validation_exclusions(self, *args, **kwargs):
         # Need to exclude `user` since we'll add that later based off the request
-        exclusions = super(PostSerializer, self).get_validation_exclusions(instance=instance)
+        exclusions = super(PostSerializer, self).get_validation_exclusions(*args, **kwargs)
         return exclusions + ['author']
     
     class Meta:
