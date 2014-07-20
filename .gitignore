@@ -16,3 +16,4 @@ pep8.report
 .env
 *.sqlite
 node_modules
+.vagrant
