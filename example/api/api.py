@@ -26,7 +26,7 @@ class PostMixin(object):
     permission_classes = [
         PostAuthorCanEditPermission
     ]
-    
+
     def pre_save(self, obj):
         """Force author to the current user on save"""
         obj.author = self.request.user
@@ -44,7 +44,7 @@ class PostDetail(PostMixin, generics.RetrieveUpdateDestroyAPIView):
 class UserPostList(generics.ListAPIView):
     model = Post
     serializer_class = PostSerializer
-    
+
     def get_queryset(self):
         queryset = super(UserPostList, self).get_queryset()
         return queryset.filter(author__username=self.kwargs.get('username'))
@@ -69,7 +69,7 @@ class PhotoDetail(generics.RetrieveUpdateDestroyAPIView):
 class PostPhotoList(generics.ListAPIView):
     model = Photo
     serializer_class = PhotoSerializer
-    
+
     def get_queryset(self):
         queryset = super(PostPhotoList, self).get_queryset()
         return queryset.filter(post__pk=self.kwargs.get('pk'))
