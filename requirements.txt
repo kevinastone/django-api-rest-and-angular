@@ -1,6 +1,5 @@
-Django>=1.5
+Django>=1.7
 djangorestframework
-south>=0.8,<2.0
 pillow
 
 # Optional

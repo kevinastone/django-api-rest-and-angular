@@ -4,6 +4,7 @@ $setup = <<SCRIPT
 SCRIPT
 
 $dependencies = <<SCRIPT
+    DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential git htop tmux pv
     DEBIAN_FRONTEND=noninteractive apt-get install -y postgresql libpq-dev
     DEBIAN_FRONTEND=noninteractive apt-get install -y python-dev libjpeg-dev zlib1g-dev
     DEBIAN_FRONTEND=noninteractive apt-get install -y python-virtualenv virtualenvwrapper
