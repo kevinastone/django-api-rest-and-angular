@@ -10,14 +10,14 @@ def parse_requirements(file_name):
 	for line in open(file_name, 'r').read().split('\n'):
 		if re.match(r'(\s*#)|(\s*$)', line):
 			continue
-		#if re.match(r'\s*-e\s+', line):
+		# if re.match(r'\s*-e\s+', line):
 		m = re.search(r"(git(?:\+\w{3})?|https?|svn)://.+#egg=(.*)$", line)
 		if m:
 			# FIXME: Can't install packages from source repos right now
 			if 'http' in m.group(1):
 				# Distutils can install Http served packages right now
 				# FIXME: Skip this now
-				#requirements.append(m.group(2))
+				# requirements.append(m.group(2))
 				pass
 			pass
 		elif re.match(r'\s*-f\s+', line):

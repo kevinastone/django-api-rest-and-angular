@@ -1,0 +1,55 @@
+[pep8]
+
+# List of PEP8 Errors and Warnings to Ignore
+# E501	line too long (82 > 79 characters)
+# W191	indentation contains tabs
+# W293	blank line contains whitespace
+# E302	expected 2 blank lines, found 0
+
+# Most of the Indentation continuation rules are ignored (short of the mixed spaces and tabs)
+
+# E121	continuation line indentation is not a multiple of four
+# E122	continuation line missing indentation or outdented
+# E123	closing bracket does not match indentation of opening bracket’s line
+# E124	closing bracket does not match visual indentation
+# E125	continuation line does not distinguish itself from next logical line
+# E126	continuation line over-indented for hanging indent
+# E127	continuation line over-indented for visual indent
+# E128	continuation line under-indented for visual indent
+
+# Whitespace
+# E261	at least two spaces before inline comment
+
+ignore = E501,W191,W293,E302,E12,E261
+
+exclude = migrations
+
+[flake8]
+
+# List of PEP8 Errors and Warnings to Ignore
+# E501	line too long (82 > 79 characters)
+# W191	indentation contains tabs
+# W293	blank line contains whitespace
+# E302	expected 2 blank lines, found 0
+
+# Most of the Indentation continuation rules are ignored (short of the mixed spaces and tabs)
+
+# E121	continuation line indentation is not a multiple of four
+# E122	continuation line missing indentation or outdented
+# E123	closing bracket does not match indentation of opening bracket’s line
+# E124	closing bracket does not match visual indentation
+# E125	continuation line does not distinguish itself from next logical line
+# E126	continuation line over-indented for hanging indent
+# E127	continuation line over-indented for visual indent
+# E128	continuation line under-indented for visual indent
+
+# Whitespace
+# E261	at least two spaces before inline comment
+
+
+# PyFlakes
+# F403	unable to detect undefined names (from whatever import *)
+
+ignore = E501,W191,W293,E302,E12,E261,F403
+
+exclude = migrations
