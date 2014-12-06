@@ -1,5 +1,5 @@
 Django>=1.7
-djangorestframework
+djangorestframework<3.0
 pillow
 
 # Optional
