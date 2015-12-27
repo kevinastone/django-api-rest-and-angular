@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.conf import settings
 
 from django.views.generic import TemplateView
@@ -21,17 +21,17 @@ class SimpleStaticView(TemplateView):
         return super(SimpleStaticView, self).get(request, *args, **kwargs)
 
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^api/', include('example.api.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^(?P<template_name>\w+)$', SimpleStaticView.as_view(), name='example'),
     url(r'^$', TemplateView.as_view(template_name='index.html')),
-)
+]
 
 if settings.DEBUG:
     from django.views.static import serve
-    urlpatterns += patterns('',
+    urlpatterns += [
         url(r'^(?P<path>favicon\..*)$', serve, {'document_root': settings.STATIC_ROOT}),
         url(r'^%s(?P<path>.*)$' % settings.MEDIA_URL[1:], serve, {'document_root': settings.MEDIA_ROOT}),
-        url(r'^%s(?P<path>.*)$' % settings.STATIC_URL[1:], 'django.contrib.staticfiles.views.serve', dict(insecure=True)),
-    )
+        url(r'^%s(?P<path>.*)$' % settings.STATIC_URL[1:], serve, dict(insecure=True)),
+    ]

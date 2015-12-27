@@ -4,7 +4,7 @@ from .models import User, Post, Photo
 
 
 class UserSerializer(serializers.ModelSerializer):
-    posts = serializers.HyperlinkedIdentityField('posts', view_name='userpost-list', lookup_field='username')
+    posts = serializers.HyperlinkedIdentityField(view_name='userpost-list', lookup_field='username')
 
     class Meta:
         model = User
@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
     author = UserSerializer(required=False)
-    photos = serializers.HyperlinkedIdentityField('photos', view_name='postphoto-list')
+    photos = serializers.HyperlinkedIdentityField(view_name='postphoto-list')
     # author = serializers.HyperlinkedRelatedField(view_name='user-detail', lookup_field='username')
 
     def get_validation_exclusions(self, *args, **kwargs):
@@ -26,7 +26,7 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class PhotoSerializer(serializers.ModelSerializer):
-    image = serializers.Field('image.url')
+    image = serializers.ReadOnlyField(source='image.url')
 
     class Meta:
         model = Photo

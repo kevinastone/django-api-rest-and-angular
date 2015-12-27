@@ -1,5 +1,5 @@
-Django>=1.7
-djangorestframework<3.0
+Django>=1.9
+djangorestframework>=3.3
 pillow
 
 # Optional
