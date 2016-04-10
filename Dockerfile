@@ -34,6 +34,6 @@ RUN grunt
 RUN make create_database
 RUN make make_fixtures
 
-EXPOSE 8000 8000
+EXPOSE 80
 
-CMD ["./manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["./manage.py", "runserver", "0.0.0.0:80"]

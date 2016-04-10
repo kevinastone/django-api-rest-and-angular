@@ -6,31 +6,33 @@ from .models import User, Post, Photo
 from .permissions import PostAuthorCanEditPermission
 
 
-class UserList(generics.ListAPIView):
+class UserMixin(object):
     model = User
+    queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+class UserList(UserMixin, generics.ListAPIView):
     permission_classes = [
         permissions.AllowAny
     ]
 
 
-class UserDetail(generics.RetrieveAPIView):
-    model = User
-    serializer_class = UserSerializer
+class UserDetail(UserMixin, generics.RetrieveAPIView):
     lookup_field = 'username'
 
 
 class PostMixin(object):
     model = Post
+    queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [
         PostAuthorCanEditPermission
     ]
 
-    def pre_save(self, obj):
+    def perform_create(self, serializer):
         """Force author to the current user on save"""
-        obj.author = self.request.user
-        return super(PostMixin, self).pre_save(obj)
+        serializer.save(author=self.request.user)
 
 
 class PostList(PostMixin, generics.ListCreateAPIView):
@@ -43,6 +45,7 @@ class PostDetail(PostMixin, generics.RetrieveUpdateDestroyAPIView):
 
 class UserPostList(generics.ListAPIView):
     model = Post
+    queryset = Post.objects.all()
     serializer_class = PostSerializer
 
     def get_queryset(self):
@@ -50,17 +53,19 @@ class UserPostList(generics.ListAPIView):
         return queryset.filter(author__username=self.kwargs.get('username'))
 
 
-class PhotoList(generics.ListCreateAPIView):
+class PhotoMixin(object):
     model = Photo
+    queryset = Photo.objects.all()
     serializer_class = PhotoSerializer
+
+
+class PhotoList(PhotoMixin, generics.ListCreateAPIView):
     permission_classes = [
         permissions.AllowAny
     ]
 
 
-class PhotoDetail(generics.RetrieveUpdateDestroyAPIView):
-    model = Photo
-    serializer_class = PhotoSerializer
+class PhotoDetail(PhotoMixin, generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [
         permissions.AllowAny
     ]
@@ -68,6 +73,7 @@ class PhotoDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class PostPhotoList(generics.ListAPIView):
     model = Photo
+    queryset = Photo.objects.all()
     serializer_class = PhotoSerializer
 
     def get_queryset(self):
