@@ -8,6 +8,16 @@ To setup and run the sample code, you're going to need `npm` from NodeJS availab
 
 ## Setup
 
+### Docker
+
+If you have a docker host, you can simply use `docker-compose` to build the example, then open [http://localhost](http://localhost):
+
+```
+docker-compose up
+```
+
+### Manual
+
 You're encouraged to setup a `virtualenv` to work in prior to configuring the dependencies.
 
 1. Install Python Requirements
