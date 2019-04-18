@@ -23,7 +23,7 @@ class SimpleStaticView(TemplateView):
 
 urlpatterns = [
     url(r'^api/', include('example.api.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^(?P<template_name>\w+)$', SimpleStaticView.as_view(), name='example'),
     url(r'^$', TemplateView.as_view(template_name='index.html')),
 ]
