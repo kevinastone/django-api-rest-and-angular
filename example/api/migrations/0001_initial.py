@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
                 ('is_staff', models.BooleanField(default=False, help_text='Designates whether the user can log into this admin site.', verbose_name='staff status')),
                 ('is_active', models.BooleanField(default=True, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active')),
                 ('date_joined', models.DateTimeField(default=django.utils.timezone.now, verbose_name='date joined')),
-                ('followers', models.ManyToManyField(related_name=b'followees', to=settings.AUTH_USER_MODEL)),
+                ('followers', models.ManyToManyField(related_name='followees', to=settings.AUTH_USER_MODEL)),
                 ('groups', models.ManyToManyField(related_query_name='user', related_name='user_set', to='auth.Group', blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of his/her group.', verbose_name='groups')),
                 ('user_permissions', models.ManyToManyField(related_query_name='user', related_name='user_set', to='auth.Permission', blank=True, help_text='Specific permissions for this user.', verbose_name='user permissions')),
             ],
@@ -43,7 +43,7 @@ class Migration(migrations.Migration):
             name='Photo',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('image', models.ImageField(upload_to=b'%Y/%m/%d')),
+                ('image', models.ImageField(upload_to='%Y/%m/%d')),
             ],
             options={
             },
@@ -55,7 +55,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('title', models.CharField(max_length=255)),
                 ('body', models.TextField(null=True, blank=True)),
-                ('author', models.ForeignKey(related_name=b'posts', to=settings.AUTH_USER_MODEL)),
+                ('author', models.ForeignKey(related_name='posts', to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={
             },
@@ -64,7 +64,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='photo',
             name='post',
-            field=models.ForeignKey(related_name=b'photos', to='api.Post'),
+            field=models.ForeignKey(related_name='photos', to='api.Post', on_delete=models.CASCADE),
             preserve_default=True,
         ),
     ]

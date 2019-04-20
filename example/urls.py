@@ -14,7 +14,7 @@ class SimpleStaticView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         from django.contrib.auth import authenticate, login
-        if request.user.is_anonymous():
+        if request.user.is_anonymous:
             # Auto-login the User for Demonstration Purposes
             user = authenticate()
             login(request, user)
